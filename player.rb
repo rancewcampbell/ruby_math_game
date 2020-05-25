@@ -1,6 +1,13 @@
 class Player 
-  def initialize(num)
-    @num = num
+  attr_reader :name, :lives
+  attr_writer :lives
+
+  def initialize(name)
+    @name = name
     @lives = 3
   end 
+
+  def lose_life
+    self.lives -= 1
+  end
 end
