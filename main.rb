@@ -5,4 +5,5 @@ require './messages'
 
 game = Game.new
 
+Message.start_message
 game.start_game
