@@ -22,20 +22,18 @@ class Game
   def start_game
     while player1.lives > 0 && player2.lives > 0 do
       query = Question.new(tester.name)
-      puts "P1: #{player1.lives}/3 vs P2 #{player2.lives}/3"
-      puts "------- NEW TURN -------"
+      Message.score(player1.lives, player2.lives)
+      Message.new_turn
       query.generate_question
       if query.check_answer
-        puts "#{tester.name}: YES! You are correct!"
+        Message.correct(tester.name)
       else
-        puts "#{tester.name}: Not even close..."
+        Message.wrong(tester.name)
         testee.lose_life
       end
       set_turns
     end
-    puts "------- GAME OVER -------"
-    puts "#{tester.name} WINS!!"
-    puts "FINAL SCORE: P1: #{player1.lives}/3 vs P2 #{player2.lives}/3"
+    Message.game_over(testee.name, player1.lives, player2.lives)
   end
 
 end
